@@ -1,1 +1,1 @@
-A counter section, that can be copied into any store and used from the customizer, has option for different look and can be shown on or not shown on different categories, also text can be added by meta objects.
+A counter section, that can be copied into any store and used from the customizer, has option for different looks and can be shown on or not shown on the homepage and on different categories, also text can be added by meta objects.
