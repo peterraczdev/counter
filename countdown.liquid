@@ -1,0 +1,442 @@
+{% if section.settings.small_verison == true %}
+  
+<style>
+  
+.countdown{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    
+  }
+
+  .remaining-time{
+  display: flex;
+  font-size: 20px;
+  color: black;
+  margin-top: 0px;
+  text-align: center;
+  justify-content: center;
+    
+  }
+
+  .remaining-time-red{
+  display: flex;
+  font-size: 20px;
+  color: red;
+  margin-top: 0px;
+  line-height: 1;
+  text-align: center;
+  justify-content: center;
+    
+  }
+
+  .remaining-time-bottom{
+  flex-grow: 1;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  justify-content: center;
+  margin-top: 0px;
+    
+  }
+  
+  .time-items {
+  display: flex;
+  font-size: 40px;
+  Color: black;
+  margin-top: 0px;
+  text-align: center;
+  justify-content: center; 
+  }
+
+  
+  .time-items p{
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+  line-height: 1;
+  
+  }
+
+  .time-name{
+    font-size: 12px;
+    font-weight: normal !important;
+    text-align: center;
+  }
+
+  #time-dots{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    
+  }
+
+.countdown-container{
+    width: 90%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    background-color: #e5e5e5;
+    margin: auto;
+    border-top: 10px solid;
+    border-bottom: 10px solid;
+    border-color: #e5e5e5;
+    justify-content: center;
+    align-items: center;
+    vertical-align: baseline;
+  
+}
+
+.countdown-container p{
+    margin-bottom: 0px;
+}
+
+@media (max-width: 1024px) {
+
+   .countdown-container{
+    display: block;
+    margin-top: 20px;
+    width: 90%;
+    border: 10px solid;
+    border-color: #e5e5e5;
+}
+   
+  .time-items {
+    display: flex;
+    font-size: 40px;
+    Color: black;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    
+  }
+   .remaining-time{
+    font-size: 18px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .remaining-time-red{
+    font-size: 18px;
+    text-align: center;
+  justify-content: center;
+    margin-top: 15px;
+  }
+
+  .remaining-time-bottom{
+    font-size: 18px;
+    text-align: center;
+  justify-content: center;
+    margin-top: 0px;
+  }
+
+}
+   
+</style>
+
+
+
+{% else %}
+<style>
+  .countdown{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+  }
+
+  .remaining-time{
+  display: flex;
+  font-size: 32px;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  justify-content: center;
+    
+  }
+
+  .remaining-time-red{
+  display: flex;
+  font-size: 32px;
+  color: red;
+  justify-content: center;
+  margin-top: 40px;
+  text-align: center;
+  line-height: 1;
+    
+  }
+
+  .remaining-time-bottom{
+  display: flex;
+  font-size: 32px;
+  color: black;
+  justify-content: center;
+  text-align: center;
+  margin-top: 0px;
+    
+  }
+  
+  .time-items {
+  display: flex;
+  font-size: 68px;
+  Color: black;
+  justify-content: center;
+  margin-top: 20px;
+    
+  }
+
+  
+  .time-items p{
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+  line-height: 1;
+  text-align:center;
+  }
+
+  .time-name{
+    font-size: 15px;
+    font-weight: normal !important;
+  }
+
+  #time-dots{
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    
+  }
+
+.countdown-container{
+    width: 50%;
+    background-color: #e5e5e5;
+    justify-content: center;
+    margin: auto;
+    border-left: 100px solid;
+    border-right: 100px solid;
+    border-color: #e5e5e5;
+}
+
+
+@media (max-width: 1024px) {
+
+   .countdown-container{
+    margin-top: 20px;
+    width: 90%;
+    border: 10px solid;
+    border-color: #e5e5e5;
+}
+   
+  .time-items {
+    display: flex;
+    font-size: 40px;
+    Color: black;
+    justify-content: center;
+    margin-top: 0px;
+    
+  }
+   .remaining-time{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .remaining-time-red{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .remaining-time-bottom{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0px;
+  }
+   
+}
+  
+</style>
+{% endif %}
+  
+<section class="countdown"> 
+
+ 
+
+<div class="countdown-container">
+
+  {% if section.settings.remaining-time == blank and section.settings.time == blank and section.settings.remaining-time-red == blank and section.settings.remaining-time-bottom == blank and collection.metafields.custom.counter == false %}
+    <style>  
+    .countdown{
+   display: none;
+    
+  }
+      </style>
+  {% endif %}
+
+  <div class="remaining-time">
+    
+    {% if collection.metafields.custom.counter == true %}
+      {% if collection.metafields.custom.text_above_counter_ !=blank  %}
+        <p> {{collection.metafields.custom.text_above_counter_}} </p>
+      {% endif %}
+      {% if collection.metafields.custom.text_above_counter_ == blank  %}
+      <p>{{ section.settings.remaining-time }}</p>
+  {% endif %}
+    {% else %}  
+    <p>{{ section.settings.remaining-time }}</p>
+     {% endif %} 
+  </div>
+
+{% if collection.metafields.custom.counter == true %}
+  {% if collection.metafields.custom.date_and_time !=blank  %}
+    {% assign time=collection.metafields.custom.date_and_time %}
+  {% endif %}
+  {% if collection.metafields.custom.date_and_time == blank  %}
+    {% assign time = section.settings.time %}
+  {% endif %}
+  {%else%}
+  {% assign time = section.settings.time %}
+{% endif %}
+
+
+  
+    <div class="time-items">
+      <div class="time-item">
+        <p id="days"></p>
+        <p class="time-name">Nap</p>
+      </div>
+      <div class="time-item">
+        <p id="time-dots"> : </p>
+      </div>
+      <div class="time-item">
+        <p id="hours"></p>
+        <p class="time-name">Óra</p>
+      </div>
+      <div class="time-item">
+        <p id="time-dots"> : </p>
+      </div>
+      <div class="time-item">
+        <p id="mins"></p>
+        <p class="time-name">Perc</p>
+      </div>
+      <div class="time-item">
+        <p id="time-dots"> : </p>
+      </div>
+      <div class="time-item">
+        <p id="secs"></p>
+        <p class="time-name">Másodperc</p>
+      </div>
+    <h2 id="end"></h2>
+    </div>
+
+
+  <div class="remaining-time-red">
+    {% if collection.metafields.custom.counter == true %}
+      {% if collection.metafields.custom.text_below_counter_ !=blank  %}
+        <p> {{collection.metafields.custom.text_below_counter_}} <p/>
+      {% endif %}
+      {% if collection.metafields.custom.text_below_counter_ == blank  %}
+        <p>{{ section.settings.remaining-time-red }}</p>
+      {% endif %}
+    {% else %}  
+    <p>{{ section.settings.remaining-time-red }}</p>
+    {% endif %} 
+  </div>
+
+    
+
+  <div class="remaining-time-bottom">
+    {% if collection.metafields.custom.counter == true %}
+      {% if collection.metafields.custom.text_bottom !=blank  %}
+        <p> {{collection.metafields.custom.text_bottom}} <p/>
+      {% endif %}
+      {% if collection.metafields.custom.text_bottom == blank  %}
+          <p>{{ section.settings.remaining-time-bottom }}</p>
+      {% endif %}
+    {% else %} 
+    <p>{{ section.settings.remaining-time-bottom }}</p>
+    {% endif %} 
+  </div>
+
+
+
+    
+</section>
+
+
+
+<script>
+    
+    var date = new Date("{{ time }}").getTime();
+    var distance = setInterval(function() {
+    var now = new Date().getTime();
+    var timeremaining = date - now;
+    var days = Math.floor(timeremaining / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((timeremaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var hours = (hours.toLocaleString(undefined,{minimumIntegerDigits: 2}));   
+    var minutes = Math.floor((timeremaining % (1000 * 60 * 60)) / (1000 * 60));
+    var minutes = (minutes.toLocaleString(undefined,{minimumIntegerDigits: 2}));
+    var seconds = Math.floor((timeremaining % (1000 * 60)) / 1000);
+    var seconds = (seconds.toLocaleString(undefined,{minimumIntegerDigits: 2}));
+  
+    document.getElementById("days").innerHTML = days 
+    document.getElementById("hours").innerHTML = hours 
+    document.getElementById("mins").innerHTML = minutes
+    document.getElementById("secs").innerHTML = seconds
+
+    if (timeremaining < 0) {
+        clearInterval(distance);
+        document.getElementById("days").innerHTML = "00"
+        document.getElementById("hours").innerHTML = "00" 
+        document.getElementById("mins").innerHTML = "00"
+        document.getElementById("secs").innerHTML = "00"
+        
+    }
+    }, 1000);
+
+</script>
+  
+
+
+{% schema %}
+{
+"name": "Countdown",
+"settings": [
+
+{
+"id": "small_verison",
+"type": "checkbox",
+"label": "Small version"
+},
+
+{
+"id": "remaining-time",
+"type": "text",
+"label": "Heading 1"
+},
+
+
+{
+"type": "text",
+"id": "time",
+"label": "Countdown date(example: December 1, 2022 00:00:00 ):"
+},
+
+{
+"id": "remaining-time-red",
+"type": "text",
+"label": "Line 1 (red)"
+},
+
+{
+"id": "remaining-time-bottom",
+"type": "text",
+"label": "Line 2"
+}
+  
+],
+"presets": [
+{
+"name": "Countdown",
+"category": "Extra Layout"
+}
+]
+}
+{% endschema %}
